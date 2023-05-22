@@ -8,11 +8,14 @@ The description of the uml diagram is as follows:
 # Second Phase:
 This phase includes implementing the Uml made before, and presenting APIs to be consumed for all the entites.
 The documentation of each entity is explained below:
+
+*Appointment Entity*
+
 | HTTP Method | URL Path                              | HTTP Status Code | Description             | Sample Request                                                 | Sample Response                                            |
 |-------------|---------------------------------------|-----------------|-------------------------|----------------------------------------------------------------|------------------------------------------------------------|
 | GET         | localhost:8080/api/app/findAppointment/{id}    | 200 OK           | Find appointment by ID  | GET localhost:8080/api/app/findAppointment/123                    | 200 OK<br>Content: Appointment details for ID 123         |
 | GET         | localhost:8080/api/app/appointmentsList        | 200 OK           | Get all appointments    | GET localhost:8080/api/app/appointmentsList                       | 200 OK<br>Content: List of all appointments               |
-| POST        | localhost:8080/api/app/addAppointment          | 201 Created      | Add a new appointment    | POST localhost:8080/api/app/addAppointment<br>Body: Appointment details | 201 Created<br>Location: URL of the newly created appointment |
+| POST        | localhost:8080/api/app/addAppointment          | 201 Created      | Add a new appointment    | POST localhost:8080/api/app/addAppointment<br>Body: {"date": "2022-02-01"} | 201 Created<br>{"id":"1", "date":"2022-02-01"} |
 | PUT         | localhost:8080/api/app/changeAppointmentDate   | 200 OK           | Change appointment date | PUT localhost:8080/api/app/changeAppointmentDate?id=123&date=2023-05-22 | 200 OK<br>Content: Updated appointment details              |
 | DELETE      | localhost:8080/api/app/deleteAppointment/{id}  | 200 OK           | Delete appointment by ID | DELETE localhost:8080/api/app/deleteAppointment/123               | 200 OK<br>Content: "Deleted Successfully"                  |
 
