@@ -73,3 +73,7 @@ when a request is received, it gets handled by one of the controllers.
 If any exception happens, it will be handled by the advice class controller which is a controller-advice that can be used as a global exception handler for whatever exceptions are listed within it.
 
 If URL is mistyped then it is handled by the controllers also using the RequestMapping(path=/**).
+
+**Database configuration:
+Mysql was used, and a database holding the name "assignment" was used to hold the tables created, database-initialization was set to create-drop in order to make it easier for testing and also every time the application is ran, multiple entites get created to permit easiser testing of the APIs.
+Docker image of mysql was used to operate the mysql server and the communication with it was done using CLI within the container, not using a workbench.
