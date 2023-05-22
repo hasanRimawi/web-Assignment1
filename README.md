@@ -5,7 +5,7 @@ The description of the uml diagram is as follows:
 2) Each doctor must work under the provision of just one apartment. Can have many appointments.
 3) Each appointment is held at some department, by some doctor of that same department, and the patient also is within the same department in records.
 
-# Second Phase:
+# Second Phase - APIs Documentation:
 This phase includes implementing the Uml made before, and presenting APIs to be consumed for all the entites.
 The documentation of each entity is explained below:
 
@@ -51,3 +51,25 @@ The documentation of each entity is explained below:
 | POST        | localhost:8080/api/pat/addPatient             | 201 Created      | Add a new patient             | POST localhost:8080/api/pat/addPatient<br>Body: Patient details          | 201 Created<br>Content: Details of the entity added            |
 | PUT         | localhost:8080/api/pat/changeNumber           | 200 OK           | Change patient's phone number | PUT localhost:8080/api/pat/changeNumber?id=123&number=987654321        | 200 OK<br>Content: Updated patient details                           |
 | DELETE      | localhost:8080/api/pat/deletePatient/{id}      | 200 OK           | Delete patient by ID          | DELETE localhost:8080/api/pat/deletePatient/123                         | 200 OK<br>Content: "Deleted Successfully"                            |
+
+
+
+# Second Phase - Application Desgin:
+The application is made of mulitple layers:
+	1) entities
+	2) controllers
+	3) repositories
+	4) services
+	5) DTOs
+
+when a request is received, it gets handled by one of the controllers.
+	The controller gives the request to a method based on the uri supplied within the request.
+	Then the controller handles the request using the service instance that is injected into the controller using DI concept.
+	The service commuincates with the repository instance after converting the DTO to entity if needed.
+	The repository instance then performs one of the CRUD operations based on the request, then returns entity if needed.
+	The service then receives the data returned from the repository instance and converts it into DTO and send it back to the controller.
+	The controller then wraps the data within response entity and defines the suitable status code and sends it back to the consumer.
+
+If any exception happens, it will be handled by the advice class controller which is a controller-advice that can be used as a global exception handler for whatever exceptions are listed within it.
+
+If URL is mistyped then it is handled by the controllers also using the RequestMapping(path=/**).
